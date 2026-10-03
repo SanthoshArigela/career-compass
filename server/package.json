@@ -8,7 +8,9 @@
     "build": "tsc",
     "start": "node dist/index.js",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "seed": "tsx src/seed/seed.ts",
+    "seed:verify": "tsx src/seed/verify.ts"
   },
   "keywords": [
     "career-compass",
