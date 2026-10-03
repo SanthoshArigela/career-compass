@@ -3,6 +3,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import { env } from './config/env';
 import healthRouter from './routes/health';
+import studentRouter from './routes/studentRoutes';
 import { notFoundHandler } from './middleware/notFound';
 import { errorHandler } from './middleware/errorHandler';
 
@@ -31,6 +32,7 @@ export const createApp = (): Express => {
 
   // 4. API Routes
   app.use('/api/health', healthRouter);
+  app.use('/api/students', studentRouter);
 
   // 5. 404 Not Found Handler
   app.use(notFoundHandler);

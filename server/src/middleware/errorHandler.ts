@@ -44,6 +44,22 @@ export const errorHandler = (
     return;
   }
 
+  // Handle Zod validation errors
+  if (err.name === 'ZodError' && 'issues' in err) {
+    const zodErr = err as { issues: Array<{ path: (string | number)[]; message: string }> };
+    const message = zodErr.issues
+      .map((i) => (i.path.length > 0 ? `${i.path.join('.')}: ${i.message}` : i.message))
+      .join('; ');
+
+    res.status(400).json({
+      error: {
+        code: 'VALIDATION_ERROR',
+        message
+      }
+    });
+    return;
+  }
+
   // Handle malformed JSON body errors from express.json()
   if ('type' in err && (err as { type: string }).type === 'entity.parse.failed') {
     res.status(400).json({
