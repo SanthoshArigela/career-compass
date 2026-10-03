@@ -6,6 +6,7 @@ import healthRouter from './routes/health';
 import careerIntelligenceRouter from './routes/careerIntelligenceRoutes';
 import progressRouter from './routes/progressRoutes';
 import studentRouter from './routes/studentRoutes';
+import catalogRouter from './routes/catalogRoutes';
 import { notFoundHandler } from './middleware/notFound';
 import { errorHandler } from './middleware/errorHandler';
 
@@ -37,6 +38,7 @@ export const createApp = (): Express => {
   app.use('/api/students', careerIntelligenceRouter);
   app.use('/api/students', progressRouter);
   app.use('/api/students', studentRouter);
+  app.use('/api', catalogRouter);
 
   // 5. 404 Not Found Handler
   app.use(notFoundHandler);
